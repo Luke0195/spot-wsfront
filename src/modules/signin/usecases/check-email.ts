@@ -1,3 +1,3 @@
 export interface CheckEmailUseCase {
-  checkEmail(email: string): Promise<any>
+  checkEmail(email: string): Promise<void>
 }
