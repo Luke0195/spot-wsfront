@@ -1,0 +1,31 @@
+import logo from '../../../assets/logo.svg'
+import { Input, Button } from '../../../@components/ui'
+
+export function Ui() {
+  return (
+    <div className="w-screen h-screen bg-banner bg-cover bg-right-bottom flex flex-col items-center justify-center">
+      <div className="w-2/5 flex flex-col items-center  ">
+        <img src={logo} alt="aircnc logo" />
+        <div className="w-3/4 rounded-md bg-white p-8 my-2 shadow-inner flex flex-col  justify-center">
+          <p className="w-96 text-left">
+            Ofereça <strong> spots</strong> para programadores e encontre{' '}
+            <strong> talentos</strong> para sua empresa.
+          </p>
+          <form>
+            <div className="my-4">
+              <label className="font-semibold text-sm py-2">E-mail*</label>
+              <Input
+                placeholder="Informe o seu e-mail"
+                className="h-10 border-gray-400 rounded-sm"
+              />
+            </div>
+            <Button className="w-full bg-red-500 font-bold rounded-sm hover:bg-red-400">
+              {' '}
+              Entrar{' '}
+            </Button>
+          </form>
+        </div>
+      </div>
+    </div>
+  )
+}
