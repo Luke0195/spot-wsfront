@@ -10,6 +10,8 @@ import {
 } from '../../../@components/ui'
 import { useAuthenticationHook } from '../index'
 import { Controller } from 'react-hook-form'
+import { FiLogIn } from 'react-icons/fi'
+import { Link } from 'react-router-dom'
 
 export function Ui() {
   const { checkEmail, form, loading, showOptInput } = useAuthenticationHook()
@@ -59,6 +61,12 @@ export function Ui() {
                 {form.formState.errors.email && (
                   <FieldError mesasge={form.formState.errors.email?.message} />
                 )}
+                <Link to={'/signup'}>
+                  <span className="flex  items-center text-sm my-2 justify-center text-red-500 font-medium hover:underline cursor-pointer ">
+                    {' '}
+                    Não possui conta <FiLogIn />{' '}
+                  </span>
+                </Link>
               </div>
             )}
             <Button
