@@ -1,19 +1,25 @@
-import { AxiosAdapter, RequestData } from './axios-adapter'
 import { axiosInstance } from '../../shared/libs/axios'
+import { RequestData, ResponseData, AxiosAdapter } from './'
 
 export class HttpClientAdapter implements AxiosAdapter {
-  async post(data: RequestData): Promise<any | void> {
+  async post<T>(data: RequestData): Promise<ResponseData<T>> {
     const response = await axiosInstance.post(`${data.url}`, data.body, {
       params: data.params,
     })
 
-    return response
+    return {
+      statusCode: response.status,
+      body: response.data,
+    }
   }
 
-  async get(data: RequestData): Promise<any> {
+  async get<T>(data: RequestData): Promise<ResponseData<T | void>> {
     const response = await axiosInstance.get(`${data.url}`, {
       params: data.params,
     })
-    return response.data
+    return {
+      statusCode: response.status,
+      body: response.data,
+    }
   }
 }

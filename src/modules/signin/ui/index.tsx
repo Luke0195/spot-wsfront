@@ -62,7 +62,7 @@ export function Ui() {
                   <FieldError mesasge={form.formState.errors.email?.message} />
                 )}
                 <Link to={'/signup'}>
-                  <span className="flex  items-center text-sm my-2 justify-center text-red-500 font-medium hover:underline cursor-pointer ">
+                  <span className="flex  items-center text-sm my-2 justify-center text-gray-500 font-medium hover:underline cursor-pointer ">
                     {' '}
                     Não possui conta <FiLogIn />{' '}
                   </span>
