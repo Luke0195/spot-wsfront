@@ -1,4 +1,4 @@
-import logo from '../../../assets/logo.svg'
+import logo from '../../assets/logo.svg'
 import {
   Input,
   Button,
@@ -7,8 +7,8 @@ import {
   InputOTPSlot,
   InputOTPSeparator,
   FieldError,
-} from '../../../@components/ui'
-import { useAuthenticationHook } from '../index'
+} from '../../@components/ui'
+import { useAuthenticationHook } from './index'
 import { Controller } from 'react-hook-form'
 import { FiLogIn } from 'react-icons/fi'
 import { Link } from 'react-router-dom'

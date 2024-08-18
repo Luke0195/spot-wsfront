@@ -1,5 +1,5 @@
 export * from './hooks'
-export * from './protocols'
+export * from './interfaces'
 export * from './schema'
 export * from './service'
 export * from './ui'

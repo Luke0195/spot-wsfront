@@ -1,5 +1,5 @@
-import { CheckEmailUseCase } from '../usecases'
-import { axiosInstance as httpClient } from '../../../shared/libs'
+import { CheckEmailUseCase } from './usecases'
+import { axiosInstance as httpClient } from '../../shared/libs'
 
 class AuthenticationService implements CheckEmailUseCase {
   constructor() {}

@@ -1,5 +1,5 @@
 import React from 'react'
-import { schema, authenticationService, FormData } from '../index'
+import { schema, authenticationService, FormData } from './index'
 import { useForm, UseFormReturn } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { toast } from 'sonner'
