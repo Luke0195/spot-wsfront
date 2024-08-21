@@ -1,21 +1,21 @@
 import { CheckEmailUseCase } from './usecases'
-import { axiosInstance as httpClient } from '../../shared/libs'
+import { httpClient, HttpClientAdapter } from '../../infra/http'
 
 class AuthenticationService implements CheckEmailUseCase {
-  constructor() {}
-  async checkEmail(email: string): Promise<any> {
+  constructor(private readonly httpClient: HttpClientAdapter) {
+    this.httpClient = httpClient
+  }
+  async checkEmail(email: string): Promise<void> {
     if (!email) throw new Error('The field email must be required')
-    const params = {
-      email,
-    }
-    const response = await httpClient.get('/users/checkeuser', {
-      params: params,
+
+    const response = await this.httpClient.get<void>({
+      url: `/users/checkuser?email=${email}`,
     })
-    if (response.status !== 200)
+    if (response.statusCode !== 200)
       throw new Error('Error, please try again later!')
   }
 }
 
-const authenticationService = new AuthenticationService()
+const authenticationService = new AuthenticationService(httpClient)
 
 export { authenticationService }

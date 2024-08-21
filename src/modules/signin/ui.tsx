@@ -1,21 +1,9 @@
 import logo from '../../assets/logo.svg'
-import {
-  Input,
-  Button,
-  InputOTP,
-  InputOTPGroup,
-  InputOTPSlot,
-  InputOTPSeparator,
-  FieldError,
-} from '../../@components/ui'
-import { useAuthenticationHook } from './index'
-import { Controller } from 'react-hook-form'
-import { FiLogIn } from 'react-icons/fi'
-import { Link } from 'react-router-dom'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '../../@components/ui'
+import { useAuthenticationHook, CodeValidation, Form } from './index'
 
 export function Ui() {
-  const { checkEmail, form, loading, showOptInput } = useAuthenticationHook()
-
+  const { checkEmail, form, loading } = useAuthenticationHook()
   const { control, formState, handleSubmit } = form
   console.log(formState.errors.email?.message)
   return (
@@ -27,55 +15,24 @@ export function Ui() {
             Ofereça <strong> spots</strong> para programadores e encontre{' '}
             <strong> talentos</strong> para sua empresa.
           </p>
-          <form onSubmit={handleSubmit(checkEmail)}>
-            {showOptInput.showOptInput ? (
-              <div className="my-4">
-                <InputOTP maxLength={6}>
-                  <InputOTPGroup>
-                    <InputOTPSlot index={0} />
-                    <InputOTPSlot index={1} />
-                    <InputOTPSlot index={2} />
-                  </InputOTPGroup>
-                  <InputOTPSeparator />
-                  <InputOTPGroup>
-                    <InputOTPSlot index={3} />
-                    <InputOTPSlot index={4} />
-                    <InputOTPSlot index={5} />
-                  </InputOTPGroup>
-                </InputOTP>
-              </div>
-            ) : (
-              <div className="my-4">
-                <label className="font-semibold text-sm py-2">E-mail*</label>
-                <Controller
-                  control={control}
-                  name="email"
-                  render={({ field }) => (
-                    <Input
-                      placeholder="Informe o seu e-mail"
-                      className={`h-10 border rounded-sm ${form.formState.errors.email?.message ? 'border-red-400' : 'border-gray-400'}`}
-                      {...field}
-                    />
-                  )}
-                />
-                {form.formState.errors.email && (
-                  <FieldError mesasge={form.formState.errors.email?.message} />
-                )}
-                <Link to={'/signup'}>
-                  <span className="flex  items-center text-sm my-2 justify-center text-gray-500 font-medium hover:underline cursor-pointer ">
-                    {' '}
-                    Não possui conta <FiLogIn />{' '}
-                  </span>
-                </Link>
-              </div>
-            )}
-            <Button
-              type="submit"
-              className="w-full bg-red-500 font-bold rounded-sm hover:bg-red-400"
-              disabled={loading.loading}>
-              Entrar{' '}
-            </Button>
-          </form>
+          <Tabs defaultValue="register" className="   ">
+            <TabsList className="my-4 w-full ">
+              <TabsTrigger value="signin-email" className="flex-1">
+                {' '}
+                Validar E-mail
+              </TabsTrigger>
+              <TabsTrigger value="signin-password" className="flex-1">
+                {' '}
+                Autenticar
+              </TabsTrigger>
+            </TabsList>
+            <TabsContent value="signin-email">
+              <Form />
+            </TabsContent>
+            <TabsContent value="signin-password">
+              <CodeValidation />
+            </TabsContent>
+          </Tabs>
         </div>
       </div>
     </div>
