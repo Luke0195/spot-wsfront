@@ -1,5 +1,5 @@
 import { useAuthenticationHook } from '../hooks'
-import { Input, FieldError, Button } from '../../../@components/ui'
+import { Input, FieldError, Button, Loader } from '../../../@components/ui'
 import { Controller } from 'react-hook-form'
 import { Link } from 'react-router-dom'
 import { FiLogIn } from 'react-icons/fi'
@@ -37,7 +37,7 @@ export function Form() {
       <Button
         className="w-full bg-red-500 font-bold rounded-sm hover:bg-red-400"
         disabled={loading}>
-        Entrar{' '}
+        {loading ? <Loader /> : 'Entrar'}
       </Button>
     </form>
   )
