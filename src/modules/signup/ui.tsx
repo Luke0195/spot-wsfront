@@ -1,6 +1,8 @@
+import { FiLogOut } from 'react-icons/fi'
 import { Wrapper, Input, Button, FieldError } from '../../@components/ui'
 import { useCreateAccountHook } from './'
 import { Controller } from 'react-hook-form'
+import { Link } from 'react-router-dom'
 
 export function Ui() {
   const { loading, form, onSubmit } = useCreateAccountHook()
@@ -46,6 +48,12 @@ export function Ui() {
               <FieldError mesasge={form.formState.errors.email?.message} />
             )}
           </div>
+          <Link to={'/'}>
+            <span className="flex  items-center text-sm my-2 justify-center text-gray-500 font-medium hover:underline cursor-pointer gap-x-2 ">
+              {' '}
+              Já possui conta <FiLogOut />{' '}
+            </span>
+          </Link>
           <Button
             type="submit"
             className="w-full bg-red-500 font-bold rounded-sm hover:bg-red-400"

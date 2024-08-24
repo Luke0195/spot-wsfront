@@ -9,6 +9,7 @@ import { useForm, UseFormReturn } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { toast } from 'sonner'
 import { SetStateAction } from '../../shared/protocols'
+import { useNavigate } from 'react-router-dom'
 
 export interface AuthenticationHookProps {
   loading: {
@@ -27,6 +28,7 @@ export interface AuthenticationHookProps {
 export function useAuthenticationHook(): AuthenticationHookProps {
   const [selectedTab, setSelectedTab] = React.useState<string>('signin-email')
   const [loading, setLoading] = React.useState<boolean>(false)
+  const navigation = useNavigate()
   const form = useForm<FormData>({
     defaultValues: { email: '', code: '' },
     mode: 'onChange',
@@ -62,8 +64,10 @@ export function useAuthenticationHook(): AuthenticationHookProps {
         code,
         email,
       }
-      const response = await authenticationService.auth(payload)
-      console.log(response)
+      const userResponse = await authenticationService.auth(payload)
+      localStorage.setItem('aircnc@user', JSON.stringify(userResponse))
+      toast.success('Usuário autenticado com sucesso!')
+      navigation('/dashboard')
     } catch (error) {
       console.log(error)
       toast.error('Ocorreu um erro ao realizar a autenticação')

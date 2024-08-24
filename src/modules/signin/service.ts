@@ -1,5 +1,6 @@
 import { CheckEmailUseCase, MfaAUthenticationUseCase } from './usecases'
 import { httpClient, HttpClientAdapter } from '../../infra/http'
+import { User } from '../../domain/user'
 
 class AuthenticationService
   implements CheckEmailUseCase, MfaAUthenticationUseCase
@@ -7,7 +8,7 @@ class AuthenticationService
   constructor(private readonly httpClient: HttpClientAdapter) {
     this.httpClient = httpClient
   }
-  async auth(params: { email: string; code: string }): Promise<any> {
+  async auth(params: { email: string; code: string }): Promise<User> {
     if (!params.email || !params.code)
       throw new Error(
         'É necessário que os campos e-mail e código sejam preenchidos corretamento!',

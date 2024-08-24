@@ -1,3 +1,5 @@
+import { User } from '../../domain/user'
+
 export interface CheckEmailUseCase {
   checkEmail(email: string): Promise<void>
 }
@@ -7,5 +9,5 @@ export type MfaAuthenticationParams = {
   email: string
 }
 export interface MfaAUthenticationUseCase {
-  auth(params: MfaAuthenticationParams): Promise<any>
+  auth(params: MfaAuthenticationParams): Promise<User>
 }
