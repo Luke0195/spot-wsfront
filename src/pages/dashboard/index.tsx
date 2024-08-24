@@ -1,3 +1,10 @@
+import { Wrapper } from '../../@components/ui'
+import { Ui } from '../../modules/spots/modules/view/ui'
+
 export function Dashboard() {
-  return <h1> Dashboard </h1>
+  return (
+    <Wrapper>
+      <Ui />
+    </Wrapper>
+  )
 }
