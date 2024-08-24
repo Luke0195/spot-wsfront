@@ -12,6 +12,7 @@ export function Ui() {
           <img src={logo} alt="aircnc logo" />
           <div className="w-3/4 rounded-md bg-white p-8 my-2 shadow-inner flex flex-col  justify-center">
             <p className="w-96 text-left">
+              <h1> Teste Login 6</h1>
               Ofereça <strong> spots</strong> para programadores e encontre{' '}
               <strong> talentos</strong> para sua empresa.
             </p>

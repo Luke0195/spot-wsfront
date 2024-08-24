@@ -1,4 +1,4 @@
-import { SignIn, SignUp } from '../../pages'
+import { SignIn, SignUp, Dashboard, PageNotFound } from '../../pages'
 import { createBrowserRouter } from 'react-router-dom'
 
 export const router = createBrowserRouter([
@@ -9,5 +9,13 @@ export const router = createBrowserRouter([
   {
     path: 'signup',
     element: <SignUp />,
+  },
+  {
+    path: 'dasbhoard',
+    element: <Dashboard />,
+  },
+  {
+    path: '*',
+    element: <PageNotFound />,
   },
 ])
