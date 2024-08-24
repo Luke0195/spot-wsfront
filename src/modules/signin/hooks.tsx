@@ -26,9 +26,10 @@ export interface AuthenticationHookProps {
 }
 
 export function useAuthenticationHook(): AuthenticationHookProps {
+  const navigation = useNavigate()
   const [selectedTab, setSelectedTab] = React.useState<string>('signin-email')
   const [loading, setLoading] = React.useState<boolean>(false)
-  const navigation = useNavigate()
+
   const form = useForm<FormData>({
     defaultValues: { email: '', code: '' },
     mode: 'onChange',
