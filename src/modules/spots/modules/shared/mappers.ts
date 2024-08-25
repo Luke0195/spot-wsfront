@@ -1,5 +1,5 @@
 import { Spot } from '../../../../domain/spot'
-import { SpotApiResponse } from './interface'
+import { SpotApiResponse, FormData } from './interface'
 
 export const mapToDomain = (data: SpotApiResponse[]): Spot[] => {
   return data.map((item) => {
@@ -21,4 +21,32 @@ export const mapToDomain = (data: SpotApiResponse[]): Spot[] => {
     }
     return parsedItem
   })
+}
+
+type PayloadData = {
+  name: string
+  thumbnail: string
+  techs: string[]
+  user_id: string
+  price: number
+}
+
+export function parsedToPersist({
+  name,
+  thumbnail,
+  techs,
+  price,
+}: FormData): PayloadData {
+  const {
+    user: { id },
+  } = JSON.parse(localStorage.getItem('aircnc@user') as any)
+
+  const payload = {
+    name,
+    user_id: id as string,
+    thumbnail,
+    techs: techs.split(','),
+    price: Number(price),
+  }
+  return payload
 }

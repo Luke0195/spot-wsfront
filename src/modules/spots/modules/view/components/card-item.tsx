@@ -7,12 +7,17 @@ type ComponentProps = {
 
 export function CardItem(props: ComponentProps) {
   const { spot } = props
+  console.log(spot.thumbnail)
   return (
-    <Card className="w-[190px] p-2 rounded-2xl">
+    <Card className="w-[220px] p-2 rounded-2xl h-[250px]">
       <CardHeader className="p-0 rounded-none">
-        <img src={spot.thumbnail} alt="spot image" className="rounded-none" />
+        <img
+          src={spot.thumbnail}
+          alt="spot image"
+          className="rounded-none w-full h-36"
+        />
       </CardHeader>
-      <CardContent className="flex flex-col p-2">
+      <CardContent className="flex flex-col p-2 w-full">
         <strong className="text-xs text-gray-600 ">
           {' '}
           Nome da companhia: <span className="">{spot.name}</span>

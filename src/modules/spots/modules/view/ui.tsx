@@ -1,10 +1,23 @@
-import { Loader } from '../../../../@components/ui'
+import {
+  Loader,
+  Button,
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationLink,
+  PaginationPrevious,
+  PaginationEllipsis,
+  PaginationNext,
+  EmptyData,
+} from '../../../../@components/ui'
 import { CardItem } from './components/card-item'
 import { useSpotHooks } from '../shared/hooks'
 import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+
 export function Ui() {
   const { loadSpots, loading, data } = useSpotHooks()
-
+  const navigate = useNavigate()
   useEffect(() => {
     loadSpots({})
   }, [loadSpots])
@@ -14,7 +27,39 @@ export function Ui() {
       {loading ? (
         <Loader />
       ) : (
-        data.map((item) => <CardItem spot={item} key={item.id} />)
+        <>
+          <div className="h-96 grid  grid-cols-3  gap-x-12">
+            {data.length > 0 ? (
+              data.map((item) => <CardItem spot={item} key={item.id} />)
+            ) : (
+              <EmptyData />
+            )}
+          </div>
+          <div className="my-2">
+            <Pagination>
+              <PaginationContent>
+                <PaginationItem>
+                  <PaginationPrevious href="#" />
+                </PaginationItem>
+                <PaginationItem>
+                  <PaginationLink href="#">1</PaginationLink>
+                </PaginationItem>
+                <PaginationItem>
+                  <PaginationEllipsis />
+                </PaginationItem>
+                <PaginationItem>
+                  <PaginationNext href="#" />
+                </PaginationItem>
+              </PaginationContent>
+            </Pagination>
+          </div>
+          <Button
+            className="bg-red-600 hover:bg-red-400"
+            onClick={() => navigate('/register')}>
+            {' '}
+            Criar Spot
+          </Button>
+        </>
       )}
     </div>
   )

@@ -10,3 +10,10 @@ export type SpotApiResponse = {
   created_at: string | null
   updated_at: string | null
 }
+
+export type FormData = {
+  name: string
+  thumbnail: string
+  techs: string
+  price: string
+}
